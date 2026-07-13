@@ -23,6 +23,7 @@
     "adx_period": 14,
     "adx_trend_threshold": 25,
     "account_start_usdt": 2000,
+    "position_risk_pct": 0.05,
     "leverage": 20,
     "fee_pct": 0.00025,
     "slippage_pct": 0.0005,
@@ -38,36 +39,36 @@
     "label": "overall",
     "trades": 1159,
     "win_rate": 0.5202761000862812,
-    "total_pnl_usdt": -1999.9999999999982,
-    "avg_win_usdt": 1.3963046316060022,
-    "avg_loss_usdt": -5.111459879241762,
-    "payoff_ratio": 0.27317139615563824,
-    "profit_factor": 0.29626322280908224,
-    "sharpe_annualized": -16.80217146867302,
-    "max_drawdown_pct": -100.0,
-    "final_equity_usdt": 6.5766667556179095e-21,
-    "total_return_pct": -100.0
+    "total_pnl_usdt": -1697.1436419720046,
+    "avg_win_usdt": 3.1509649293668582,
+    "avg_loss_usdt": -6.469740097806154,
+    "payoff_ratio": 0.48703114525965724,
+    "profit_factor": 0.5282010442294497,
+    "sharpe_annualized": -13.727669952521966,
+    "max_drawdown_pct": -85.01002999633836,
+    "final_equity_usdt": 300.484621417457,
+    "total_return_pct": -84.97576892912716
   },
   "by_regime": {
     "trending": {
       "label": "trending",
       "trades": 504,
       "win_rate": 0.5297619047619048,
-      "total_pnl_usdt": -1667.5040011624305,
-      "avg_win_usdt": 2.2493874068507433,
-      "avg_loss_usdt": -9.570001851441265,
-      "payoff_ratio": 0.2350456605723624,
-      "profit_factor": 0.2647982758346863
+      "total_pnl_usdt": -704.3678063357119,
+      "avg_win_usdt": 3.631893787605272,
+      "avg_loss_usdt": -7.063643238929622,
+      "payoff_ratio": 0.5141672172214101,
+      "profit_factor": 0.5792516750975383
     },
     "ranging": {
       "label": "ranging",
       "trades": 655,
       "win_rate": 0.5129770992366413,
-      "total_pnl_usdt": -332.4959988375691,
-      "avg_win_usdt": 0.7184084977061632,
-      "avg_loss_usdt": -1.7990007964477723,
-      "payoff_ratio": 0.3993375095356828,
-      "profit_factor": 0.42061881882128355
+      "total_pnl_usdt": -992.7758356362931,
+      "avg_win_usdt": 2.7687982473738324,
+      "avg_loss_usdt": -6.028501713962071,
+      "payoff_ratio": 0.45928464131664215,
+      "profit_factor": 0.48376062533665076
     }
   },
   "hard_stop": {
@@ -75,13 +76,13 @@
     "total_trades": 1159,
     "near_liquidation_ge_50pct_margin_loss_count": 23,
     "worst_10_margin_loss_pct": [
-      2.4724564971213625,
-      1.653478035847895,
-      1.4371243750893523,
-      0.9791428207047222,
+      2.472456497121362,
+      1.6534780358478949,
+      1.437124375089352,
+      0.9791428207047224,
       0.950344251243115,
-      0.7413997026324067,
-      0.7202992977218814,
+      0.7413997026324068,
+      0.7202992977218815,
       0.7193001778557624,
       0.6820339573487876,
       0.6813717077128401

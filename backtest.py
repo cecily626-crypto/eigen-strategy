@@ -1,8 +1,9 @@
 """Event-driven 15m backtest for the EIGEN/USDT v1 (raw) breakout+RSI strategy.
 
-Position sizing: each new trade risks the FULL current equity as margin
-(no per-trade risk %, since the spec didn't define one) -> notional = equity * leverage.
-This is disclosed explicitly in the report since it drives strong compounding.
+Position sizing: each trade uses `position_risk_pct` (config.yaml) of current
+equity as margin -> notional = equity * position_risk_pct * leverage. An
+earlier 100%-of-equity run wiped the account in 8 days; this run tests
+whether the raw signal has a viable edge once compounding risk is removed.
 
 Exit priority when more than one condition fires on the same bar:
   hard stop (20% margin) > ATR stop (initial/trailing) > reversal take-profit.
@@ -137,7 +138,7 @@ def run_backtest(sig, cfg):
             side = 1 if row["long_entry"] else (-1 if row["short_entry"] else 0)
             if side != 0:
                 entry_price = close * (1 + side * slip)
-                margin = equity
+                margin = equity * cfg["position_risk_pct"]
                 notional = margin * lev
                 qty = notional / entry_price
                 entry_fee = notional * fee

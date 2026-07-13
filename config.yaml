@@ -30,6 +30,7 @@ adx_period: 14
 adx_trend_threshold: 25
 
 account_start_usdt: 2000
+position_risk_pct: 0.05
 leverage: 20
 fee_pct: 0.00025
 slippage_pct: 0.0005
