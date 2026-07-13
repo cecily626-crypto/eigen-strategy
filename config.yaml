@@ -1,0 +1,39 @@
+symbol: EIGENUSDT
+data_source: binance
+exec_venue: lbank_perp
+
+signal_timeframe: 15m
+stop_atr_timeframe: 4h
+regime_filter_timeframe: 1h
+
+backtest_days: 90
+warmup_days: 30
+
+range_lookback_bars: 20
+range_top_pct: 0.90
+range_bottom_pct: 0.10
+
+rsi_period: 14
+rsi_lookback_bars: 20
+rsi_top_threshold: 0.90
+rsi_bottom_threshold: 0.10
+
+atr_period: 14
+atr_stop_mult: 2.0
+
+take_profit_midline_pct: 0.50
+take_profit_rsi_cross: 50
+
+hard_stop_margin_pct: 0.20
+
+adx_period: 14
+adx_trend_threshold: 25
+
+account_start_usdt: 2000
+leverage: 20
+fee_pct: 0.00025
+slippage_pct: 0.0005
+funding_rate_per_interval: 0.00005
+funding_interval_hours: 4
+
+phase3_1h_trend_filter_enabled: false
