@@ -29,7 +29,7 @@
     "slippage_pct": 0.0005,
     "funding_rate_per_interval": 5e-05,
     "funding_interval_hours": 4,
-    "phase3_1h_trend_filter_enabled": true
+    "phase3_1h_trend_filter_enabled": false
   },
   "backtest_window": {
     "start": "2026-04-14 09:45:00+00:00",
@@ -37,55 +37,55 @@
   },
   "overall": {
     "label": "overall",
-    "trades": 905,
-    "win_rate": 0.5226519337016574,
-    "total_pnl_usdt": -1555.2418569878212,
-    "avg_win_usdt": 3.342527474173181,
-    "avg_loss_usdt": -7.259854982110503,
-    "payoff_ratio": 0.4604124300567612,
-    "profit_factor": 0.5041089801315922,
-    "sharpe_annualized": -12.303148691306138,
-    "max_drawdown_pct": -77.9865568415094,
-    "final_equity_usdt": 441.2751414417751,
-    "total_return_pct": -77.93624292791125
+    "trades": 1159,
+    "win_rate": 0.5202761000862812,
+    "total_pnl_usdt": -1697.1436419720046,
+    "avg_win_usdt": 3.1509649293668582,
+    "avg_loss_usdt": -6.469740097806154,
+    "payoff_ratio": 0.48703114525965724,
+    "profit_factor": 0.5282010442294497,
+    "sharpe_annualized": -13.727669952521966,
+    "max_drawdown_pct": -85.01002999633836,
+    "final_equity_usdt": 300.484621417457,
+    "total_return_pct": -84.97576892912716
   },
   "by_regime": {
     "trending": {
       "label": "trending",
-      "trades": 250,
-      "win_rate": 0.548,
-      "total_pnl_usdt": -387.5013651981565,
-      "avg_win_usdt": 3.292363652082571,
-      "avg_loss_usdt": -7.4208423498537055,
-      "payoff_ratio": 0.44366441124402495,
-      "profit_factor": 0.5378940207117822
+      "trades": 504,
+      "win_rate": 0.5297619047619048,
+      "total_pnl_usdt": -704.3678063357119,
+      "avg_win_usdt": 3.631893787605272,
+      "avg_loss_usdt": -7.063643238929622,
+      "payoff_ratio": 0.5141672172214101,
+      "profit_factor": 0.5792516750975383
     },
     "ranging": {
       "label": "ranging",
       "trades": 655,
       "win_rate": 0.5129770992366413,
-      "total_pnl_usdt": -1167.740491789666,
-      "avg_win_usdt": 3.362981175442269,
-      "avg_loss_usdt": -7.202828108897393,
-      "payoff_ratio": 0.46689732485606594,
-      "profit_factor": 0.4917790004753542
+      "total_pnl_usdt": -992.7758356362931,
+      "avg_win_usdt": 2.7687982473738324,
+      "avg_loss_usdt": -6.028501713962071,
+      "payoff_ratio": 0.45928464131664215,
+      "profit_factor": 0.48376062533665076
     }
   },
   "hard_stop": {
-    "count": 306,
-    "total_trades": 905,
-    "near_liquidation_ge_50pct_margin_loss_count": 13,
+    "count": 415,
+    "total_trades": 1159,
+    "near_liquidation_ge_50pct_margin_loss_count": 23,
     "worst_10_margin_loss_pct": [
+      2.472456497121362,
+      1.6534780358478949,
       1.437124375089352,
-      0.9791428207047222,
+      0.9791428207047224,
       0.950344251243115,
-      0.7193001778557623,
-      0.6813717077128402,
-      0.6347676916734524,
-      0.6007891510795106,
-      0.5954505637098001,
-      0.5898427384144674,
-      0.5741611081569586
+      0.7413997026324068,
+      0.7202992977218815,
+      0.7193001778557624,
+      0.6820339573487876,
+      0.6813717077128401
     ]
   }
 }

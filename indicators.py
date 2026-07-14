@@ -23,7 +23,9 @@ def atr(df, period=14):
     return tr.ewm(alpha=1 / period, adjust=False).mean()
 
 
-def adx(df, period=14):
+def adx_di(df, period=14):
+    """Wilder's ADX plus the +DI/-DI pair, so callers can tell not just HOW
+    STRONG a trend is (ADX) but WHICH WAY it points (+DI vs -DI)."""
     h, l, c = df["high"], df["low"], df["close"]
     up_move = h.diff()
     down_move = -l.diff()
@@ -35,7 +37,12 @@ def adx(df, period=14):
     plus_di = 100 * pd.Series(plus_dm, index=df.index).ewm(alpha=1 / period, adjust=False).mean() / atr_s
     minus_di = 100 * pd.Series(minus_dm, index=df.index).ewm(alpha=1 / period, adjust=False).mean() / atr_s
     dx = 100 * (plus_di - minus_di).abs() / (plus_di + minus_di).replace(0, np.nan)
-    return dx.ewm(alpha=1 / period, adjust=False).mean()
+    adx_s = dx.ewm(alpha=1 / period, adjust=False).mean()
+    return adx_s, plus_di, minus_di
+
+
+def adx(df, period=14):
+    return adx_di(df, period)[0]
 
 
 def rolling_high(s, n):

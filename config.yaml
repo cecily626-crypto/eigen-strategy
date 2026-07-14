@@ -37,4 +37,4 @@ slippage_pct: 0.0005
 funding_rate_per_interval: 0.00005
 funding_interval_hours: 4
 
-phase3_1h_trend_filter_enabled: false
+phase3_1h_trend_filter_enabled: true

@@ -15,7 +15,7 @@ from backtest import load
 from strategy import build_signals
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-COLS = ["hh", "ll", "range", "rsi", "long_entry", "short_entry", "atr4h", "adx1h"]
+COLS = ["hh", "ll", "range", "rsi", "long_entry", "short_entry", "atr4h", "adx1h", "trend_dir"]
 
 
 def main():
