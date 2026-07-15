@@ -145,10 +145,12 @@ def run_segment(sig, cfg, start_time, end_time, dd_pause_enabled=True):
                     entry_fee = qty * entry_price * fee
                     equity -= entry_fee
                     midline = row["ll"] + 0.5 * row["range"]
+                    tp1_frac = cfg.get("tp1_target_frac_of_midline", 1.0)
+                    tp1_price = entry_price + tp1_frac * (midline - entry_price)
                     pos = {
                         "side": side, "entry_price": entry_price, "entry_time": t,
                         "entry_i": i, "entry_close_time": close_t,
-                        "stop_price": stop_price, "tp1_price": midline,
+                        "stop_price": stop_price, "tp1_price": tp1_price,
                         "tp2_price": row["hh"] if side == 1 else row["ll"],
                         "qty_original": qty, "qty_remaining": qty,
                         "tp1_done": False, "tp1_time": None,

@@ -1,0 +1,122 @@
+{
+  "config": {
+    "symbol": "EIGENUSDT",
+    "data_source": "binance",
+    "exec_venue": "lbank_perp",
+    "signal_timeframe": "15m",
+    "regime_filter_timeframe": "1h",
+    "warmup_days": 15,
+    "train_frac": 0.6,
+    "range_lookback_bars": 20,
+    "range_top_pct": 0.95,
+    "range_bottom_pct": 0.05,
+    "rsi_period": 14,
+    "rsi_lookback_bars": 20,
+    "rsi_top_pos_threshold": 0.9,
+    "rsi_bottom_pos_threshold": 0.1,
+    "rsi_abs_overbought": 75,
+    "rsi_abs_oversold": 25,
+    "adx_period": 14,
+    "adx_max_for_entry": 20,
+    "cooldown_bars_after_any_close": 4,
+    "cooldown_bars_after_stop_same_dir": 8,
+    "atr_period": 14,
+    "atr_stop_mult": 0.5,
+    "tp1_pct": 0.5,
+    "reversal_confirm_entry": false,
+    "leverage_cap": 3,
+    "risk_pct_per_trade": 0.01,
+    "max_drawdown_pause_pct": 0.25,
+    "account_start_usdt": 2000,
+    "fee_pct": 0.00025,
+    "slippage_pct": 0.0005,
+    "funding_rate_per_interval": 5e-05,
+    "funding_interval_hours": 4,
+    "tp1_target_frac_of_midline": 0.4
+  },
+  "tag": "v3_tp40",
+  "edge_eval": {
+    "train": {
+      "label": "v3_tp40_edge_eval_train",
+      "trades": 631,
+      "win_rate": 0.3518225039619651,
+      "total_pnl_usdt": -858.5008411229547,
+      "avg_win_usdt": 19.339633235079077,
+      "avg_loss_usdt": -12.596331098558704,
+      "payoff_ratio": 1.5353385905592745,
+      "profit_factor": 0.8333622667583341,
+      "sharpe_annualized": -1.2037424112502637,
+      "max_drawdown_pct": -57.352250863163775,
+      "final_equity_usdt": 1141.4991588770456,
+      "total_return_pct": -42.925042056147724,
+      "window": {
+        "start": "2024-10-16 05:00:00+00:00",
+        "end": "2025-11-02 09:48:00+00:00"
+      },
+      "paused_by_drawdown_breaker": false,
+      "paused_at": null
+    },
+    "oos": {
+      "label": "v3_tp40_edge_eval_oos",
+      "trades": 396,
+      "win_rate": 0.3333333333333333,
+      "total_pnl_usdt": -510.9471594513834,
+      "avg_win_usdt": 21.26472172133367,
+      "avg_loss_usdt": -12.567766767679656,
+      "payoff_ratio": 1.6920048020002925,
+      "profit_factor": 0.8460024010001452,
+      "sharpe_annualized": -1.1520262926556235,
+      "max_drawdown_pct": -39.334837641583434,
+      "final_equity_usdt": 1489.0528405486168,
+      "total_return_pct": -25.547357972569163,
+      "window": {
+        "start": "2025-11-02 09:48:00+00:00",
+        "end": "2026-07-15 05:00:00+00:00"
+      },
+      "paused_by_drawdown_breaker": false,
+      "paused_at": null
+    }
+  },
+  "live_sim": {
+    "train": {
+      "label": "v3_tp40_live_sim_train",
+      "trades": 126,
+      "win_rate": 0.373015873015873,
+      "total_pnl_usdt": -254.7411763079649,
+      "avg_win_usdt": 25.00622933362341,
+      "avg_loss_usdt": -18.101695632762855,
+      "payoff_ratio": 1.38143021741918,
+      "profit_factor": 0.8218635470721704,
+      "sharpe_annualized": -0.6410985995656178,
+      "max_drawdown_pct": -25.097674558106743,
+      "final_equity_usdt": 1745.258823692036,
+      "total_return_pct": -12.737058815398195,
+      "window": {
+        "start": "2024-10-16 05:00:00+00:00",
+        "end": "2025-11-02 09:48:00+00:00"
+      },
+      "paused_by_drawdown_breaker": true,
+      "paused_at": "2024-12-26 00:30:00+00:00"
+    },
+    "oos": {
+      "label": "v3_tp40_live_sim_oos",
+      "trades": 102,
+      "win_rate": 0.37254901960784315,
+      "total_pnl_usdt": -390.0080141196684,
+      "avg_win_usdt": 17.038779274343455,
+      "avg_loss_usdt": -16.210650414761243,
+      "payoff_ratio": 1.0510854801253455,
+      "profit_factor": 0.6240820038244238,
+      "sharpe_annualized": -2.3094333124850728,
+      "max_drawdown_pct": -25.835734530612076,
+      "final_equity_usdt": 1609.9919858803316,
+      "total_return_pct": -19.500400705983424,
+      "window": {
+        "start": "2025-11-02 09:48:00+00:00",
+        "end": "2026-07-15 05:00:00+00:00"
+      },
+      "paused_by_drawdown_breaker": true,
+      "paused_at": "2025-12-28 18:45:00+00:00"
+    }
+  }
+}
