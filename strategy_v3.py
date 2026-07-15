@@ -1,10 +1,15 @@
-"""EIGEN/USDT v3: intraday mean-reversion rebuild.
+"""EIGEN/USDT v3 (+v3a/v3b variants): intraday mean-reversion rebuild.
 
-Entry needs ALL THREE gates true on the same 15m bar:
+Entry needs ALL THREE gates true (the "touch"):
   1. deep extreme:  short price >= LL+0.95*Range, long price <= LL+0.05*Range
   2. RSI hard filter: short (RSI top 10% of its own 20-bar range) OR RSI>=75
                        long  (RSI bottom 10% of its own 20-bar range) OR RSI<=25
   3. range confirmation: 1h ADX < adx_max_for_entry (skip trend segments entirely)
+
+v3b adds `reversal_confirm_entry: true` (config): gates 1+2 must fire on the
+PRIOR bar (the "touch"), and the ENTRY bar is the next bar where price has
+closed back OUT of the extreme zone -- i.e. we buy/sell the confirmed snap-back,
+not the falling knife itself. Gate 3 (regime) is still checked on the entry bar.
 
 Cooldown state (universal 4-bar, +8-bar same-direction after a stop-loss) is
 sequential/history-dependent, so it lives in backtest_v3.py's event loop, not
@@ -40,8 +45,15 @@ def build_signals_v3(df15, df1h, cfg):
 
     atr15 = atr(df15, cfg["atr_period"])
 
-    long_entry = (deep_long & rsi_long_ok & regime_ok).fillna(False)
-    short_entry = (deep_short & rsi_short_ok & regime_ok).fillna(False)
+    touch_long = deep_long & rsi_long_ok
+    touch_short = deep_short & rsi_short_ok
+
+    if cfg.get("reversal_confirm_entry"):
+        long_entry = (touch_long.shift(1).fillna(False) & (~deep_long) & regime_ok).fillna(False)
+        short_entry = (touch_short.shift(1).fillna(False) & (~deep_short) & regime_ok).fillna(False)
+    else:
+        long_entry = (touch_long & regime_ok).fillna(False)
+        short_entry = (touch_short & regime_ok).fillna(False)
 
     return pd.DataFrame({
         "close": df15["close"], "high": df15["high"], "low": df15["low"],

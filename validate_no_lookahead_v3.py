@@ -1,6 +1,7 @@
 """Same walk-forward truncation-consistency proof as validate_no_lookahead.py,
 adapted to the v3 signal set (build_signals_v3 / backtest_v3.load_full)."""
 import os
+import sys
 
 import numpy as np
 import pandas as pd
@@ -14,7 +15,8 @@ COLS = ["hh", "ll", "range", "rsi", "long_entry", "short_entry", "atr15", "adx1h
 
 
 def main():
-    with open(os.path.join(HERE, "config_v3.yaml")) as f:
+    config_path = sys.argv[1] if len(sys.argv) > 1 else "config_v3.yaml"
+    with open(os.path.join(HERE, config_path)) as f:
         cfg = yaml.safe_load(f)
     df15, df1h = load_full(cfg)
     full_sig = build_signals_v3(df15, df1h, cfg)

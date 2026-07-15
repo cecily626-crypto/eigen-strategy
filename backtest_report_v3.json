@@ -23,6 +23,7 @@
     "atr_period": 14,
     "atr_stop_mult": 0.5,
     "tp1_pct": 0.5,
+    "reversal_confirm_entry": false,
     "leverage_cap": 3,
     "risk_pct_per_trade": 0.01,
     "max_drawdown_pause_pct": 0.25,
@@ -32,44 +33,89 @@
     "funding_rate_per_interval": 5e-05,
     "funding_interval_hours": 4
   },
-  "train": {
-    "label": "train",
-    "trades": 128,
-    "win_rate": 0.34375,
-    "total_pnl_usdt": -348.12831762422246,
-    "avg_win_usdt": 30.42578219655077,
-    "avg_loss_usdt": -20.08169921752924,
-    "payoff_ratio": 1.5150999856621803,
-    "profit_factor": 0.7936238020135229,
-    "sharpe_annualized": -0.7774870981909476,
-    "max_drawdown_pct": -25.0770416350655,
-    "final_equity_usdt": 1651.8716823757786,
-    "total_return_pct": -17.406415881211068,
-    "window": {
-      "start": "2024-10-16 05:00:00+00:00",
-      "end": "2025-11-02 09:48:00+00:00"
+  "tag": "v3",
+  "edge_eval": {
+    "train": {
+      "label": "v3_edge_eval_train",
+      "trades": 631,
+      "win_rate": 0.3359746434231379,
+      "total_pnl_usdt": -822.9781186134386,
+      "avg_win_usdt": 23.208998292744248,
+      "avg_loss_usdt": -13.707125910919375,
+      "payoff_ratio": 1.6932067629331025,
+      "profit_factor": 0.85670604711651,
+      "sharpe_annualized": -0.8594446940484568,
+      "max_drawdown_pct": -56.26108026625736,
+      "final_equity_usdt": 1177.021881386563,
+      "total_return_pct": -41.148905930671845,
+      "window": {
+        "start": "2024-10-16 05:00:00+00:00",
+        "end": "2025-11-02 09:48:00+00:00"
+      },
+      "paused_by_drawdown_breaker": false,
+      "paused_at": null
     },
-    "paused_by_drawdown_breaker": true,
-    "paused_at": "2024-12-26 08:45:00+00:00"
+    "oos": {
+      "label": "v3_edge_eval_oos",
+      "trades": 396,
+      "win_rate": 0.34595959595959597,
+      "total_pnl_usdt": -224.885908417855,
+      "avg_win_usdt": 30.408852143121425,
+      "avg_loss_usdt": -16.95327664874707,
+      "payoff_ratio": 1.793685832724778,
+      "profit_factor": 0.9487836258042259,
+      "sharpe_annualized": -0.24427275105413904,
+      "max_drawdown_pct": -35.302037589930805,
+      "final_equity_usdt": 1775.1140915821468,
+      "total_return_pct": -11.244295420892659,
+      "window": {
+        "start": "2025-11-02 09:48:00+00:00",
+        "end": "2026-07-15 05:00:00+00:00"
+      },
+      "paused_by_drawdown_breaker": false,
+      "paused_at": null
+    }
   },
-  "oos": {
-    "label": "oos",
-    "trades": 108,
-    "win_rate": 0.37037037037037035,
-    "total_pnl_usdt": -349.12287369812407,
-    "avg_win_usdt": 23.6057210823594,
-    "avg_loss_usdt": -19.019878191066176,
-    "payoff_ratio": 1.2411079001256295,
-    "profit_factor": 0.7300634706621352,
-    "sharpe_annualized": -1.7748625542057237,
-    "max_drawdown_pct": -25.88862127343765,
-    "final_equity_usdt": 1650.8771263018768,
-    "total_return_pct": -17.456143684906156,
-    "window": {
-      "start": "2025-11-02 09:48:00+00:00",
-      "end": "2026-07-15 05:00:00+00:00"
+  "live_sim": {
+    "train": {
+      "label": "v3_live_sim_train",
+      "trades": 128,
+      "win_rate": 0.34375,
+      "total_pnl_usdt": -348.12831762422246,
+      "avg_win_usdt": 30.42578219655077,
+      "avg_loss_usdt": -20.08169921752924,
+      "payoff_ratio": 1.5150999856621803,
+      "profit_factor": 0.7936238020135229,
+      "sharpe_annualized": -0.7774870981909476,
+      "max_drawdown_pct": -25.0770416350655,
+      "final_equity_usdt": 1651.8716823757786,
+      "total_return_pct": -17.406415881211068,
+      "window": {
+        "start": "2024-10-16 05:00:00+00:00",
+        "end": "2025-11-02 09:48:00+00:00"
+      },
+      "paused_by_drawdown_breaker": true,
+      "paused_at": "2024-12-26 08:45:00+00:00"
     },
-    "paused_by_drawdown_breaker": true,
-    "paused_at": "2026-01-07 10:00:00+00:00"
+    "oos": {
+      "label": "v3_live_sim_oos",
+      "trades": 108,
+      "win_rate": 0.37037037037037035,
+      "total_pnl_usdt": -349.12287369812407,
+      "avg_win_usdt": 23.6057210823594,
+      "avg_loss_usdt": -19.019878191066176,
+      "payoff_ratio": 1.2411079001256295,
+      "profit_factor": 0.7300634706621352,
+      "sharpe_annualized": -1.7748625542057237,
+      "max_drawdown_pct": -25.88862127343765,
+      "final_equity_usdt": 1650.8771263018768,
+      "total_return_pct": -17.456143684906156,
+      "window": {
+        "start": "2025-11-02 09:48:00+00:00",
+        "end": "2026-07-15 05:00:00+00:00"
+      },
+      "paused_by_drawdown_breaker": true,
+      "paused_at": "2026-01-07 10:00:00+00:00"
+    }
   }
 }

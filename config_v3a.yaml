@@ -25,7 +25,7 @@ cooldown_bars_after_any_close: 4
 cooldown_bars_after_stop_same_dir: 8
 
 atr_period: 14
-atr_stop_mult: 0.5
+atr_stop_mult: 1.0
 tp1_pct: 0.50
 reversal_confirm_entry: false
 

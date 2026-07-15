@@ -18,6 +18,7 @@ Differences from v1/v2 that matter for this loop:
 """
 import json
 import os
+import sys
 
 import numpy as np
 import pandas as pd
@@ -37,7 +38,7 @@ def load_full(cfg):
     return df15, df1h
 
 
-def run_segment(sig, cfg, start_time, end_time):
+def run_segment(sig, cfg, start_time, end_time, dd_pause_enabled=True):
     fee = cfg["fee_pct"]
     slip = cfg["slippage_pct"]
     lev_cap = cfg["leverage_cap"]
@@ -127,7 +128,7 @@ def run_segment(sig, cfg, start_time, end_time):
                 pos = None
 
         peak_equity = max(peak_equity, mtm)
-        if not paused and peak_equity > 0 and (peak_equity - mtm) / peak_equity >= dd_pause:
+        if dd_pause_enabled and not paused and peak_equity > 0 and (peak_equity - mtm) / peak_equity >= dd_pause:
             paused = True
             paused_at = close_t
 
@@ -161,7 +162,10 @@ def run_segment(sig, cfg, start_time, end_time):
 
 
 def main():
-    with open(os.path.join(HERE, "config_v3.yaml")) as f:
+    config_path = sys.argv[1] if len(sys.argv) > 1 else "config_v3.yaml"
+    tag = os.path.splitext(os.path.basename(config_path))[0].replace("config_", "")
+
+    with open(os.path.join(HERE, config_path)) as f:
         cfg = yaml.safe_load(f)
     df15, df1h = load_full(cfg)
     sig = build_signals_v3(df15, df1h, cfg)
@@ -171,24 +175,27 @@ def main():
     total_span = (full_end - full_start)
     train_end = full_start + total_span * cfg["train_frac"]
 
-    segments = {
-        "train": (full_start, train_end),
-        "oos": (train_end, full_end),
-    }
+    segments = {"train": (full_start, train_end), "oos": (train_end, full_end)}
+    modes = {"edge_eval": False, "live_sim": True}  # dd_pause_enabled
 
-    report = {"config": cfg}
-    for name, (s, e) in segments.items():
-        trades, equity_curve, final_equity, paused, paused_at = run_segment(sig, cfg, s, e)
-        m = compute_metrics(trades, name)
-        if trades:
-            m.update(equity_stats(equity_curve, cfg["account_start_usdt"]))
-        m["window"] = {"start": str(s), "end": str(e)}
-        m["paused_by_drawdown_breaker"] = paused
-        m["paused_at"] = str(paused_at) if paused_at else None
-        report[name] = m
-        pd.DataFrame(trades).to_csv(os.path.join(HERE, f"trades_v3_{name}.csv"), index=False)
+    report = {"config": cfg, "tag": tag}
+    for mode_name, pause_enabled in modes.items():
+        report[mode_name] = {}
+        for seg_name, (s, e) in segments.items():
+            trades, equity_curve, final_equity, paused, paused_at = run_segment(
+                sig, cfg, s, e, dd_pause_enabled=pause_enabled)
+            m = compute_metrics(trades, f"{tag}_{mode_name}_{seg_name}")
+            if trades:
+                m.update(equity_stats(equity_curve, cfg["account_start_usdt"]))
+            m["window"] = {"start": str(s), "end": str(e)}
+            m["paused_by_drawdown_breaker"] = paused
+            m["paused_at"] = str(paused_at) if paused_at else None
+            report[mode_name][seg_name] = m
+            pd.DataFrame(trades).to_csv(
+                os.path.join(HERE, f"trades_{tag}_{mode_name}_{seg_name}.csv"), index=False)
 
-    with open(os.path.join(HERE, "backtest_report_v3.json"), "w") as f:
+    out_path = os.path.join(HERE, f"backtest_report_{tag}.json")
+    with open(out_path, "w") as f:
         json.dump(report, f, indent=2, default=str)
     print(json.dumps(report, indent=2, default=str))
 
